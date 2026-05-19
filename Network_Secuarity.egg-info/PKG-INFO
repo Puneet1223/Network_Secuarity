@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: Network_Secuarity
+Version: 0.0.1
+Author: Puneet Chhonker
+Author-email: puneetchhonker513@gmail.com
+Requires-Dist: python-dotenv
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: pymongo
+Requires-Dist: certifi
+Dynamic: author
+Dynamic: author-email
+Dynamic: requires-dist
