@@ -5,8 +5,11 @@ pymongo[srv]==3.12
 certifi
 pymongo
 scikit-learn
- 
+dagshub
 pyaml
+mlflow
+fastapi
+uvicorn
 
 
 ##-e .
