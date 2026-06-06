@@ -11,6 +11,6 @@ mlflow
 fastapi
 uvicorn
 python-multipart
-
+huggingface-hub
 
 ##-e .

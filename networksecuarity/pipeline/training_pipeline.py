@@ -3,12 +3,12 @@ import sys
 
 from networksecuarity.exception.exception import NetworkSecuarityException
 from networksecuarity.logging.logger import logging
-
+from networksecuarity.constants.training_pipeline import HF_REPO_ID
 from networksecuarity.components.data_ingestion import DataIngestion
 from networksecuarity.components.data_validation import DataValidation
 from networksecuarity.components.data_transformation import DataTransformation
 from networksecuarity.components.model_trainer import ModelTrainer
-
+from networksecuarity.cloud.hf_syncer import HFSync
 from networksecuarity.entity.config_entity import(
     TrainingPipelineConfig,
     DataIngestionConfig,
@@ -29,7 +29,7 @@ from networksecuarity.entity.artifact_entity import (
 class TrainingPipeline:
     def __init__(self):
         self.training_pipeline_config=TrainingPipelineConfig()
-        
+        self.hf_sync=HFSync()
         
 
     def start_data_ingestion(self):
@@ -85,16 +85,47 @@ class TrainingPipeline:
      
     
 
+    def sync_artifact_dir_to_hf(self):
+        try:
+            repo_path = f"artifacts/{self.training_pipeline_config.timestamp}"
+
+            self.hf_sync.sync_folder_to_hf(
+                folder=self.training_pipeline_config.artifact_dir,
+                repo_path=repo_path
+            )
+
+        except Exception as e:
+            raise NetworkSecuarityException(e, sys)
+
+    def sync_saved_model_dir_to_hf(self):
+        try:
+            repo_path = f"final_model/{self.training_pipeline_config.timestamp}"
+
+            self.hf_sync.sync_folder_to_hf(
+                folder=self.training_pipeline_config.model_dir,
+                repo_path=repo_path
+            )
+
+        except Exception as e:
+            raise NetworkSecuarityException(e, sys)
 
     def run_pipeline(self):
-        try:
-            data_ingestion_artifact=self.start_data_ingestion()
-            data_validation_artifact=self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
-            data_transformation_artifact=self.start_data_transformation(data_validation_artifact=data_validation_artifact)
-            model_trainer_artifact=self.start_model_trainer(data_transformation_artifact=data_transformation_artifact)
-            
-            return model_trainer_artifact
-        except Exception as e:
-            raise NetworkSecuarityException(e,sys)
-        
-    
+     try:
+        data_ingestion_artifact = self.start_data_ingestion()
+        data_validation_artifact = self.start_data_validation(
+            data_ingestion_artifact=data_ingestion_artifact
+        )
+        data_transformation_artifact = self.start_data_transformation(
+            data_validation_artifact=data_validation_artifact
+        )
+        model_trainer_artifact = self.start_model_trainer(
+            data_transformation_artifact=data_transformation_artifact
+        )
+
+        self.sync_artifact_dir_to_hf()
+        self.sync_saved_model_dir_to_hf()
+
+        return model_trainer_artifact
+
+     except Exception as e:
+        raise NetworkSecuarityException(e, sys)

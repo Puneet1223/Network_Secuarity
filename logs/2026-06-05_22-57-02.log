@@ -1,0 +1,37 @@
+[2026-06-05 22:57:14,337] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-06-05 22:57:14,355] 107 dagshub - INFO - Accessing as Puneet1223
+[2026-06-05 22:57:15,579] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Puneet1223/Network_Secuarity "HTTP/1.1 200 OK"
+[2026-06-05 22:57:16,689] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-06-05 22:57:16,693] 107 dagshub - INFO - Initialized MLflow to track repo "Puneet1223/Network_Secuarity"
+[2026-06-05 22:57:16,694] 107 dagshub - INFO - Repository Puneet1223/Network_Secuarity initialized!
+[2026-06-05 22:57:34,824] 38 root - INFO - Start data Ingestion
+[2026-06-05 22:57:41,112] 66 root - INFO - Performed train test split on the dataframe
+[2026-06-05 22:57:41,112] 68 root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
+[2026-06-05 22:57:41,113] 76 root - INFO - Exporting train and test file path.
+[2026-06-05 22:57:41,432] 85 root - INFO - Exported train and test file path.
+[2026-06-05 22:57:41,433] 41 root - INFO - Data Ingestion completed and artifact: DataIngestionArtifact(train_file_path='Artifacts/06_05_2026_22_57_04/data_ingestion/ingested/train.csv', test_file_path='Artifacts/06_05_2026_22_57_04/data_ingestion/ingested/test.csv')
+[2026-06-05 22:57:41,450] 51 root - INFO - Initiate the data Validation
+[2026-06-05 22:57:41,568] 34 root - INFO - Required number of columns:2
+[2026-06-05 22:57:41,568] 35 root - INFO - Data frame has columns:31
+[2026-06-05 22:57:41,568] 34 root - INFO - Required number of columns:2
+[2026-06-05 22:57:41,568] 35 root - INFO - Data frame has columns:31
+[2026-06-05 22:57:42,071] 66 root - INFO - Entered initiate_data_transformation method of DataTransformation class
+[2026-06-05 22:57:42,071] 68 root - INFO - Starting data transformation
+[2026-06-05 22:57:42,150] 51 root - INFO - Entered get_data_trnasformer_object method of Trnasformation class
+[2026-06-05 22:57:42,150] 56 root - INFO - Initialise KNNImputer with {'missing_values': nan, 'n_neighbors': 3, 'weights': 'uniform'}
+[2026-06-05 22:57:42,182] 41 root - INFO - Entered the save_object method of MainUtils class
+[2026-06-05 22:57:42,184] 45 root - INFO - Exited the save_object method of MainUtils class
+[2026-06-05 22:57:42,184] 41 root - INFO - Entered the save_object method of MainUtils class
+[2026-06-05 22:57:42,190] 45 root - INFO - Exited the save_object method of MainUtils class
+[2026-06-05 22:59:20,387] 41 root - INFO - Entered the save_object method of MainUtils class
+[2026-06-05 22:59:20,391] 45 root - INFO - Exited the save_object method of MainUtils class
+[2026-06-05 22:59:20,392] 41 root - INFO - Entered the save_object method of MainUtils class
+[2026-06-05 22:59:20,400] 45 root - INFO - Exited the save_object method of MainUtils class
+[2026-06-05 22:59:20,400] 131 root - INFO - Model trainer artifact: ModelTrainerArtifact(trained_model_file_path='Artifacts/06_05_2026_22_57_04/model_trainer/trained_model/model.pkl', train_metric_artifact=ClassificationMetricArtifact(f1_score=0.9913626663956915, precision_score=0.9910605444941081, recall_score=0.9916649725553974), test_metric_artifact=ClassificationMetricArtifact(f1_score=0.9710610932475884, precision_score=0.9664, recall_score=0.975767366720517))
+[2026-06-05 22:59:21,508] 1025 httpx - INFO - HTTP Request: POST https://huggingface.co/api/models/Puneet876/network-security-model/preupload/main "HTTP/1.1 200 OK"
+[2026-06-05 22:59:21,816] 1025 httpx - INFO - HTTP Request: POST https://huggingface.co/Puneet876/network-security-model.git/info/lfs/objects/batch "HTTP/1.1 200 OK"
+[2026-06-05 22:59:24,287] 1025 httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/Puneet876/network-security-model/xet-write-token/main "HTTP/1.1 200 OK"
+[2026-06-05 22:59:31,605] 1025 httpx - INFO - HTTP Request: POST https://huggingface.co/api/models/Puneet876/network-security-model/commit/main "HTTP/1.1 200 OK"
+[2026-06-05 22:59:32,054] 1025 httpx - INFO - HTTP Request: POST https://huggingface.co/api/models/Puneet876/network-security-model/preupload/main "HTTP/1.1 200 OK"
+[2026-06-05 22:59:32,363] 1025 httpx - INFO - HTTP Request: POST https://huggingface.co/Puneet876/network-security-model.git/info/lfs/objects/batch "HTTP/1.1 200 OK"
+[2026-06-05 22:59:35,638] 1025 httpx - INFO - HTTP Request: POST https://huggingface.co/api/models/Puneet876/network-security-model/commit/main "HTTP/1.1 200 OK"
