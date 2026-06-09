@@ -69,7 +69,6 @@ MODEL_TRAINER_TRAINED_MODEL_NAME: str = "model.pkl"
 MODEL_TRAINER_EXPECTED_SCORE: float = 0.6
 MODEL_TRAINER_OVER_FIITING_UNDER_FITTING_THRESHOLD: float = 0.05
 
-TRAINING_BUCKET_NAME = "netwworksecurity"
 
 from dotenv import load_dotenv
 import os
@@ -78,3 +77,4 @@ load_dotenv()
 
 HF_TOKEN_ID = os.getenv("HF_TOKEN")
 HF_REPO_ID = os.getenv("HF_REPO_ID")
+TRAINING_BUCKET_NAME = "networksecurity125"

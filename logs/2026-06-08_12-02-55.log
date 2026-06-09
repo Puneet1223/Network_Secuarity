@@ -1,0 +1,18 @@
+[2026-06-08 12:03:26,022] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-06-08 12:03:26,045] 107 dagshub - INFO - Accessing as Puneet1223
+[2026-06-08 12:03:26,487] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-06-08 12:03:26,512] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-06-08 12:03:26,514] 107 dagshub - INFO - Accessing as Puneet1223
+[2026-06-08 12:03:26,568] 107 dagshub - INFO - Accessing as Puneet1223
+[2026-06-08 12:03:27,410] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Puneet1223/Network_Secuarity "HTTP/1.1 200 OK"
+[2026-06-08 12:03:27,884] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Puneet1223/Network_Secuarity "HTTP/1.1 200 OK"
+[2026-06-08 12:03:27,970] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/repos/Puneet1223/Network_Secuarity "HTTP/1.1 200 OK"
+[2026-06-08 12:03:28,750] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-06-08 12:03:28,766] 107 dagshub - INFO - Initialized MLflow to track repo "Puneet1223/Network_Secuarity"
+[2026-06-08 12:03:28,768] 107 dagshub - INFO - Repository Puneet1223/Network_Secuarity initialized!
+[2026-06-08 12:03:29,147] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-06-08 12:03:29,148] 1025 httpx - INFO - HTTP Request: GET https://dagshub.com/api/v1/user "HTTP/1.1 200 OK"
+[2026-06-08 12:03:29,150] 107 dagshub - INFO - Initialized MLflow to track repo "Puneet1223/Network_Secuarity"
+[2026-06-08 12:03:29,151] 107 dagshub - INFO - Initialized MLflow to track repo "Puneet1223/Network_Secuarity"
+[2026-06-08 12:03:29,151] 107 dagshub - INFO - Repository Puneet1223/Network_Secuarity initialized!
+[2026-06-08 12:03:29,152] 107 dagshub - INFO - Repository Puneet1223/Network_Secuarity initialized!

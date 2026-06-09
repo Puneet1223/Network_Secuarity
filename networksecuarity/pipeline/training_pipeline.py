@@ -3,12 +3,13 @@ import sys
 
 from networksecuarity.exception.exception import NetworkSecuarityException
 from networksecuarity.logging.logger import logging
-from networksecuarity.constants.training_pipeline import HF_REPO_ID
+from networksecuarity.constants.training_pipeline import HF_REPO_ID,TRAINING_BUCKET_NAME
 from networksecuarity.components.data_ingestion import DataIngestion
 from networksecuarity.components.data_validation import DataValidation
 from networksecuarity.components.data_transformation import DataTransformation
 from networksecuarity.components.model_trainer import ModelTrainer
 from networksecuarity.cloud.hf_syncer import HFSync
+from networksecuarity.cloud.s3_syncer import S3Sync
 from networksecuarity.entity.config_entity import(
     TrainingPipelineConfig,
     DataIngestionConfig,
@@ -30,6 +31,7 @@ class TrainingPipeline:
     def __init__(self):
         self.training_pipeline_config=TrainingPipelineConfig()
         self.hf_sync=HFSync()
+        self.s3_sync=S3Sync()
         
 
     def start_data_ingestion(self):
@@ -81,10 +83,45 @@ class TrainingPipeline:
             return model_trainer_artifact
 
         except Exception as e:
-            raise NetworkSecuarityException(e, sys)
-     
-    
+            raise NetworkSecuarityException(e,sys)
+        
 
+    def sync_artifact_dir_to_s3(self):
+        try:
+            aws_bucket_url = f"s3://{TRAINING_BUCKET_NAME}/artifact/{self.training_pipeline_config.timestamp}"  
+            self.s3_sync.sync_folder_to_s3(folder = self.training_pipeline_config.artifact_dir,aws_bucket_url=aws_bucket_url)
+        except Exception as e:
+            raise NetworkSecuarityException(e,sys)   
+
+
+    ## local final model is going to s3 bucket  
+    def sync_saved_model_dir_to_s3(self):
+        try:
+            aws_bucket_url = f"s3://{TRAINING_BUCKET_NAME}/final_model/{self.training_pipeline_config.timestamp}"
+            self.s3_sync.sync_folder_to_s3(folder = self.training_pipeline_config.model_dir,aws_bucket_url=aws_bucket_url)
+        except Exception as e:
+            raise NetworkSecuarityException(e,sys)
+        
+    
+    
+    def run_pipeline(self):
+        try:
+            data_ingestion_artifact=self.start_data_ingestion()
+            data_validation_artifact=self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
+            data_transformation_artifact=self.start_data_transformation(data_validation_artifact=data_validation_artifact)
+            model_trainer_artifact=self.start_model_trainer(data_transformation_artifact=data_transformation_artifact)
+            
+            self.sync_artifact_dir_to_s3()
+            self.sync_saved_model_dir_to_s3()
+            
+            return model_trainer_artifact
+        except Exception as e:
+            raise NetworkSecuarityException(e,sys)
+        
+    
+        
+               
+'''
     def sync_artifact_dir_to_hf(self):
         try:
             repo_path = f"artifacts/{self.training_pipeline_config.timestamp}"
@@ -129,3 +166,4 @@ class TrainingPipeline:
 
      except Exception as e:
         raise NetworkSecuarityException(e, sys)
+'''     
