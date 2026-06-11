@@ -26,8 +26,15 @@ from sklearn.ensemble import (
  
 import mlflow
 
+import os
 import dagshub
-dagshub.init(repo_owner='Puneet1223', repo_name='Network_Secuarity', mlflow=True)
+
+if os.getenv("ENABLE_DAGSHUB") == "true":
+    dagshub.init(
+        repo_owner='Puneet1223',
+        repo_name='Network_Secuarity',
+        mlflow=True
+    )
 
 
 
